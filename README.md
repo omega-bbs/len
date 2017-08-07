@@ -15,4 +15,4 @@ $ npm start
 ``` shell
 $ npm run lint
 $ npm run prettier
-`
+```
