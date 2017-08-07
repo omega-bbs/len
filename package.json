@@ -1,0 +1,38 @@
+{
+  "name": "len",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --exec babel-node ./index.js",
+    "start:production": "NODE_ENV=production node ./index.js",
+    "build": "babel ./src --out-dir ./dist",
+    "lint": "eslint .",
+    "prettier": "eslint --fix .",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "babel-runtime": "^6.25.0",
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.4.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.3",
+    "nodemon": "^1.11.0",
+    "prettier": "^1.5.3"
+  }
+}
