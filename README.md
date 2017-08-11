@@ -1,0 +1,1 @@
+# Database Spec of Omega-bbs

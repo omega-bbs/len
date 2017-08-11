@@ -1,0 +1,22 @@
+{
+  "name": "omega",
+  "version": "0.0.1",
+  "scripts": {
+    "prestart": "tsc",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@types/koa-bodyparser": "^3.0.23",
+    "@types/koa-router": "^7.0.22",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "pg": "^7.1.0",
+    "reflect-metadata": "^0.1.10",
+    "typeorm": "0.1.0-alpha.34"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.20",
+    "typescript": "^2.4.2"
+  }
+}
