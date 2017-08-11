@@ -21,7 +21,6 @@ export class Comment {
   @ManyToOne(type => Post, post => post.comments)
   post: User;
 
-
   @CreateDateColumn() createdAt: Date;
 
   @UpdateDateColumn() updatedAt: Date;
