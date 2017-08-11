@@ -1,14 +1,14 @@
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-bodyparser';
 import 'reflect-metadata';
-import {createConnection} from 'typeorm';
-import {router} from './routes';
+import { createConnection } from 'typeorm';
+import { router } from './routes';
 
 // create connection with database
 // note that its not active database connection
 // TypeORM creates you connection pull to uses connections from pull on your requests
-createConnection().then(async connection => {
-
+createConnection()
+  .then(async connection => {
     // create koa app
     const app = new Koa();
 
@@ -22,5 +22,5 @@ createConnection().then(async connection => {
     app.listen(port);
 
     console.log(`Omega is up and running on port ${port}`);
-
-}).catch(error => console.log('TypeORM connection error: ', error));
+  })
+  .catch(error => console.log('TypeORM connection error: ', error));
