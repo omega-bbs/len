@@ -1,5 +1,5 @@
 {
-  "name": "omega",
+  "name": "@omega-bbs/len",
   "version": "0.0.1",
   "scripts": {
     "start": "nodemon server.js",
