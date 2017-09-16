@@ -1,0 +1,18 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+      "tslint:latest",
+      "tslint-eslint-rules",
+      "tslint-config-prettier",
+      "tslint-plugin-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "prettier": [
+      true,
+      {"singleQuote": true, "semi": false}
+    ],
+    "object-literal-sort-keys": false
+  },
+  "rulesDirectory": []
+}
