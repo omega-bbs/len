@@ -33,6 +33,20 @@ export class BaseResolver<TModel> {
     })
   }
 
+  /**
+   * Convert an entity to resolver
+   * @param klass resolver class to be created
+   * @param entity entity of the created instance
+   */
+  public static fromEntity<
+    TModel extends { id: number },
+    TResolver extends BaseResolver<TModel>
+  >(klass: { new (id: number): TResolver }, entity: TModel): TResolver {
+    const resolver = new klass(entity.id)
+    resolver.row = entity
+    return resolver
+  }
+
   /** repository of the entity */
   protected repo: Repository<TModel>
   /** entity id of this instance */
