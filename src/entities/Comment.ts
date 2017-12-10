@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn
 } from 'typeorm'
 import { Post } from './Post'
+import { User } from './User'
 
 @Entity()
 export class Comment {
@@ -22,7 +23,8 @@ export class Comment {
   @Column() public deletedAt: Date
 
   // relationships
-  @Column() public author: User
+  @ManyToOne(type => User, user => user.comments)
+  public author: User
 
   @ManyToOne(type => Post, post => post.comments)
   public post: Post

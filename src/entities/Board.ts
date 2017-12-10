@@ -1,6 +1,7 @@
-import { Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { Topic } from './Topic'
 
+@Entity()
 export class Board {
   // basic columns
   @PrimaryGeneratedColumn() public id: number

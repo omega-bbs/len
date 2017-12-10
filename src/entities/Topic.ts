@@ -1,4 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Board } from './Board'
 import { Post } from './Post'
 
 @Entity()

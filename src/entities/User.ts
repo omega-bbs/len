@@ -6,9 +6,11 @@ import {
   OneToOne,
   PrimaryGeneratedColumn
 } from 'typeorm'
+import { Comment } from './Comment'
 import { File } from './File'
-import { Topic } from './Topic'
+import { Post } from './Post'
 import { Role } from './Role'
+import { Topic } from './Topic'
 
 export enum UserAvatarType {
   file = 1,
@@ -37,6 +39,12 @@ export class User {
   // relationships
   @OneToMany(type => File, file => file.usedInUser)
   public avatarFiles: File[]
+
+  @OneToMany(type => Post, post => post.author)
+  public posts: Post[]
+
+  @OneToMany(type => Comment, comment => comment.author)
+  public comments: Comment[]
 
   @OneToOne(type => File)
   @JoinColumn()
