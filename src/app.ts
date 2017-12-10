@@ -3,9 +3,9 @@ import 'reflect-metadata'
 
 import { Container } from 'typedi'
 import * as log from 'winston'
-import { HttpServer } from './servers/HttpServer'
+import { HttpServerManager } from './managers/HttpServerManager'
 
-const server = Container.get(HttpServer)
+const server = Container.get(HttpServerManager)
 server
   .listen()
   .then(address => {

@@ -6,7 +6,7 @@ import { Container, Inject, Service } from 'typedi'
 import { ConfigService } from '../services/ConfigService'
 
 @Service()
-export class HttpServer {
+export class HttpServerManager {
   public app: express.Application
   private config: any
 
