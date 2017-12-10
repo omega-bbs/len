@@ -20,5 +20,5 @@ export class Permission {
 
   // relationships
   @ManyToMany(type => Role, role => role.permissions)
-  public roles: Role
+  public roles: Promise<Role>
 }

@@ -1,16 +1,18 @@
 import * as express from 'express'
+import * as graphqlHTTP from 'express-graphql'
 import * as morgan from 'morgan'
 import * as path from 'path'
 import { useContainer, useExpressServer } from 'routing-controllers'
 import { Container, Inject, Service } from 'typedi'
 import { ConfigService } from '../services/ConfigService'
+import { GraphqlService } from '../services/GraphqlService'
 
 @Service()
 export class HttpServerManager {
   public app: express.Application
   private config: any
 
-  constructor(cfg: ConfigService) {
+  constructor(cfg: ConfigService, gql: GraphqlService) {
     this.config = cfg.config.httpServer
     this.app = express()
     this.app.use(morgan('combined'))
@@ -19,6 +21,14 @@ export class HttpServerManager {
         name: 's',
         keys: [cfg.config.secret.session],
         maxAge: 15 * 24 * 60 * 60 * 1000
+      })
+    )
+    this.app.use(
+      '/graphql',
+      graphqlHTTP({
+        schema: gql.schema,
+        rootValue: gql.root,
+        graphiql: true
       })
     )
     useContainer(Container)

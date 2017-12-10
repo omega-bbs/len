@@ -28,5 +28,5 @@ export class Board {
   // relationships
   /** topics of the board */
   @OneToMany(type => Topic, topic => topic.board)
-  public topics: Topic[]
+  public topics: Promise<Topic[]>
 }

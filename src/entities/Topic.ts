@@ -2,8 +2,10 @@ import {
   Column,
   Entity,
   Index,
+  JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn
 } from 'typeorm'
 import { Board } from './Board'
@@ -23,10 +25,14 @@ export class Topic {
   @Column() public deletedAt: Date
 
   // relationships
+  @OneToOne(type => Post, { eager: true })
+  @JoinColumn()
+  public rootPost: Post
+
   @ManyToOne(type => Board, board => board.topics)
   @Index() // board.topics
-  public board: Board
+  public board: Promise<Board>
 
   @OneToMany(type => Post, post => post.topic)
-  public posts: Post[]
+  public posts: Promise<Post[]>
 }

@@ -42,16 +42,16 @@ export class File {
 
   // relationships
   @ManyToOne(type => User, user => user.files)
-  public author: User
+  public author: Promise<User>
 
   /** get the user if this file using(used) as avatar */
   @ManyToOne(type => User, user => user.avatarFiles)
-  public usedInUser: User
+  public usedInUser: Promise<User>
 
   /** get the post if this file using in a post */
   @ManyToOne(type => Post, post => post.files)
   @Index() // post.files
-  public usedInPost: Post
+  public usedInPost: Promise<Post>
 
   // calculated fields
   /** get the public accessed url of the file (use the storageDriver and path) */

@@ -40,27 +40,27 @@ export class User {
 
   // relationships
   @OneToMany(type => File, file => file.usedInUser)
-  public avatarFiles: File[]
+  public avatarFiles: Promise<File[]>
 
   @OneToMany(type => File, file => file.author)
-  public files: File[]
+  public files: Promise<File[]>
 
   @OneToMany(type => Post, post => post.author)
-  public posts: Post[]
+  public posts: Promise<Post[]>
 
   @OneToMany(type => Comment, comment => comment.author)
-  public comments: Comment[]
+  public comments: Promise<Comment[]>
 
   @OneToOne(type => File)
   @JoinColumn()
-  public currentAvatarFile: File
+  public currentAvatarFile: Promise<File>
 
   @ManyToOne(type => Role, role => role.users)
-  public role: Role
+  public role: Promise<Role>
 
   // calculated fileds
   /** get user's current avatar public url */
-  public getAvatarUrl(): string {
+  public async getAvatarUrl(): Promise<string> {
     const methods = {
       [UserAvatarType.file]: this.getAvatarUrlFile,
       [UserAvatarType.gravatar]: this.getAvatarUrlGravatar,
@@ -69,15 +69,15 @@ export class User {
     return methods[this.avatarType].call(this)
   }
 
-  private getAvatarUrlGravatar(): string {
-    return 'https://gravatar.com'
+  private getAvatarUrlGravatar(): Promise<string> {
+    return Promise.resolve('https://gravatar.com')
   }
 
-  private getAvatarUrlFile(): string {
-    return this.currentAvatarFile.getUrl()
+  private async getAvatarUrlFile(): Promise<string> {
+    return (await this.currentAvatarFile).getUrl()
   }
 
-  private getAvatarUrlUnset(): string {
+  private async getAvatarUrlUnset(): Promise<string> {
     return 'about:blank'
   }
 }

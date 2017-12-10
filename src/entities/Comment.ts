@@ -27,9 +27,9 @@ export class Comment {
 
   // relationships
   @ManyToOne(type => User, user => user.comments)
-  public author: User
+  public author: Promise<User>
 
   /** post of the comment belongs to */
   @ManyToOne(type => Post, post => post.comments)
-  public post: Post
+  public post: Promise<Post>
 }

@@ -42,25 +42,25 @@ export class Post {
   // relationships
   @ManyToOne(type => User, user => user.posts)
   @Index() // user.posts
-  public author: User
+  public author: Promise<User>
 
   @ManyToOne(type => Topic, topic => topic.posts)
   @Index() // topic.posts
-  public topic: Topic
+  public topic: Promise<Topic>
 
   @OneToMany(type => Comment, comment => comment.post)
-  public comments: Comment[]
+  public comments: Promise<Comment[]>
 
   /** files used in this post */
   @OneToMany(type => File, file => file.author)
-  public files: File[]
+  public files: Promise<File[]>
 
   /** posts which referenced to this post */
   @ManyToMany(type => Post, post => post.postsReferencedBy)
   @JoinTable()
-  public postsReferenced: Post[]
+  public postsReferenced: Promise<Post[]>
 
   /** posts which referenced by this post */
   @ManyToMany(type => Post, post => post.postsReferenced)
-  public postsReferencedBy: Post[]
+  public postsReferencedBy: Promise<Post[]>
 }

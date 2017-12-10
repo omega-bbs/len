@@ -18,9 +18,11 @@ export class Role {
 
   // relationships
   @ManyToOne(type => User, user => user.role)
-  public users: User[]
+  public users: Promise<User[]>
 
-  @ManyToMany(type => Permission, permission => permission.roles)
+  @ManyToMany(type => Permission, permission => permission.roles, {
+    eager: true
+  })
   @JoinTable()
   public permissions: Permission[]
 }
