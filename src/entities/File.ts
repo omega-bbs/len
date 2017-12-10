@@ -40,7 +40,8 @@ export class File {
   @Column() public deletedAt: Date
 
   // relationships
-  @Column() public author: User
+  @ManyToOne(type => User, user => user.files)
+  public author: User
 
   @ManyToOne(type => User, user => user.avatarFiles)
   public usedInUser: User

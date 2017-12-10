@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
-    "start": "ts-node src/app.ts"
+    "start": "ts-node src/app.ts",
+    "init": "typeorm schema:sync"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,6 @@
     "@types/node": "^8.0.57",
     "@types/winston": "^2.3.7",
     "prettier": "^1.9.1",
-    "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
     "tslint-config-prettier": "^1.6.0",
     "tslint-eslint-rules": "^4.1.1",
@@ -37,8 +37,11 @@
     "morgan": "^1.9.0",
     "reflect-metadata": "^0.1.10",
     "routing-controllers": "^0.7.6",
+    "sqlite3": "^3.1.13",
+    "ts-node": "^3.3.0",
     "typedi": "^0.6.0",
     "typeorm": "0.1.7",
+    "typeorm-typedi-extensions": "^0.1.1",
     "winston": "^2.4.0"
   }
 }

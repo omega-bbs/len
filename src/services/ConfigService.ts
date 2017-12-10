@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { Container, Inject, Service } from 'typedi'
+import { ConnectionOptions } from 'typeorm'
 
 @Service()
 export class ConfigService {
@@ -12,8 +13,8 @@ export class ConfigService {
     }
     secret: {
       session: string
-      room: string
     }
+    dbConnection: ConnectionOptions
   }
 
   constructor() {
@@ -29,9 +30,27 @@ export class ConfigService {
     for (const file of configFiles) {
       if (fs.existsSync(file)) {
         this.config = require(file)
+        this.transformConfig()
         return
       }
     }
     process.exit(1)
+  }
+
+  private transformConfig() {
+    const entities = ['src/entities/*.ts', 'src/entities/*.js']
+    let dbConnection: any = this.config.dbConnection
+    if (dbConnection instanceof Array) {
+      dbConnection = dbConnection.map(opt => {
+        opt.entities = entities
+        return opt
+      })
+    } else {
+      dbConnection.entities = entities
+    }
+    dbConnection.cli = dbConnection.cli || {}
+    dbConnection.cli.entitiesDir = 'src/entities'
+    dbConnection.cli.migrationsDir = 'src/migrations'
+    this.config.dbConnection = dbConnection
   }
 }

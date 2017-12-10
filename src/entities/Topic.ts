@@ -1,4 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm'
 import { Board } from './Board'
 import { Post } from './Post'
 
@@ -9,10 +15,6 @@ export class Topic {
 
   @Column() public title: string
 
-  @Column() public board: Board
-
-  @Column() public topic: Topic
-
   @Column() public createdAt: Date
 
   @Column() public updatedAt: Date
@@ -22,4 +24,7 @@ export class Topic {
   // relationships
   @OneToMany(type => Post, post => post.topic)
   public posts: Post[]
+
+  @ManyToOne(type => Board, board => board.topics)
+  public board: Board
 }

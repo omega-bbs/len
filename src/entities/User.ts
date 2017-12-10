@@ -1,5 +1,6 @@
 import {
   Column,
+  Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -18,6 +19,7 @@ export enum UserAvatarType {
   unset
 }
 
+@Entity()
 export class User {
   // basic columns
   @PrimaryGeneratedColumn() public id: number
@@ -39,6 +41,9 @@ export class User {
   // relationships
   @OneToMany(type => File, file => file.usedInUser)
   public avatarFiles: File[]
+
+  @OneToMany(type => File, file => file.author)
+  public files: File[]
 
   @OneToMany(type => Post, post => post.author)
   public posts: Post[]
