@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  Index,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn
@@ -13,7 +14,7 @@ export class Topic {
   // basic types
   @PrimaryGeneratedColumn() public id: number
 
-  @Column() public title: string
+  @Column('text') public title: string
 
   @Column() public createdAt: Date
 
@@ -22,9 +23,10 @@ export class Topic {
   @Column() public deletedAt: Date
 
   // relationships
+  @ManyToOne(type => Board, board => board.topics)
+  @Index() // board.topics
+  public board: Board
+
   @OneToMany(type => Post, post => post.topic)
   public posts: Post[]
-
-  @ManyToOne(type => Board, board => board.topics)
-  public board: Board
 }

@@ -14,7 +14,7 @@ export class Role {
   // basic columns
   @PrimaryGeneratedColumn() public id: number
 
-  @Column() public title: string
+  @Column('text') public title: string
 
   // relationships
   @ManyToOne(type => User, user => user.role)

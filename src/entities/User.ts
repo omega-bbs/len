@@ -26,11 +26,11 @@ export class User {
 
   @Column() public username: string
 
-  @Column() public displayName: string
+  @Column('text') public displayName: string
 
-  @Column() public email: string
+  @Column('text') public email: string
 
-  @Column() public bio: string
+  @Column('text') public bio: string
 
   @Column() public avatarType: UserAvatarType
 
@@ -59,6 +59,7 @@ export class User {
   public role: Role
 
   // calculated fileds
+  /** get user's current avatar public url */
   public getAvatarUrl(): string {
     const methods = {
       [UserAvatarType.file]: this.getAvatarUrlFile,
