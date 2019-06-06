@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/node": "^8.0.57",
     "@types/winston": "^2.3.7",
-    "prettier": "^1.9.1",
+    "prettier": "^1.18.0",
     "tslint": "^5.8.0",
     "tslint-config-prettier": "^1.6.0",
     "tslint-eslint-rules": "^4.1.1",
