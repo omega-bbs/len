@@ -41,7 +41,7 @@
     "morgan": "^1.9.0",
     "reflect-metadata": "^0.1.10",
     "routing-controllers": "^0.7.6",
-    "sqlite3": "^3.1.13",
+    "sqlite3": "^4.1.0",
     "ts-node": "^4.0.0",
     "typedi": "^0.6.0",
     "typeorm": "0.1.8",
