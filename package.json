@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/omega-bbs/len#readme",
   "devDependencies": {
-    "@types/node": "^8.0.57",
+    "@types/node": "^12.7.3",
     "@types/winston": "^2.3.7",
     "prettier": "^1.9.1",
     "tslint": "^5.8.0",
